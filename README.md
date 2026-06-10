@@ -13,6 +13,20 @@ Image: `gh cs-proxy connect my-codespace --gateway`
 <p>
  
 ----
+
+## Desktop App (GUI)
+
+Prefer a one-click interface? The [`app/`](app/) folder contains a cross-platform desktop build (Electron) that runs the whole flow for you. Pick or create a Codespace, press ENABLE, and it starts the Codespace, opens the tunnel, and validates the connection. Press DISABLE to tear it down and optionally stop or delete the Codespace. It has a dot-matrix status display and selectable skins.
+
+```bash
+cd app
+npm install
+npm start
+```
+
+See [app/README.md](app/README.md) for setup, routing modes, and the one-time firewall authorization. Linux and macOS for now.
+
+----
  
 ## Installation
 

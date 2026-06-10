@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS-Proxy</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/themes.css" />
+</head>
+<body data-theme="green">
+  <main class="device">
+    <header class="device__top">
+      <span class="brand">CS&middot;PROXY</span>
+      <span class="power-led" id="powerLed" title="Link"></span>
+      <button id="btnClose" class="btn-close" type="button" title="Close">&times;</button>
+    </header>
+
+    <section class="display" aria-label="status display">
+      <canvas id="matrix"></canvas>
+      <div class="display__glass"></div>
+    </section>
+
+    <section class="controls">
+      <button id="btnPower" class="btn btn--power" type="button">
+        <span id="powerLabel">&#9654;</span>
+      </button>
+
+      <div class="leds">
+        <span class="led" id="ledTun"><i></i>TUN</span>
+        <span class="led" id="ledVal"><i></i>VAL</span>
+        <span class="led" id="ledBusy"><i></i>BUSY</span>
+      </div>
+
+      <div class="controls__utils">
+        <button id="btnValidate" class="btn btn--mini" type="button">CHECK</button>
+        <button id="btnTheme" class="btn btn--mini" type="button">SKIN</button>
+        <button id="btnLog" class="btn btn--mini" type="button">LOG</button>
+        <button id="btnSettings" class="btn btn--mini" type="button">SET</button>
+        <span id="hint" class="hint">Ready</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Log drawer -->
+  <aside class="log" id="logDrawer" hidden>
+    <div class="log__head">
+      <span>ACTIVITY</span>
+      <button id="btnLogClose" class="btn btn--mini" type="button">×</button>
+    </div>
+    <pre id="log" class="log__body"></pre>
+  </aside>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="js/dotmatrix.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
