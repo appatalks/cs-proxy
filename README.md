@@ -16,7 +16,15 @@ Image: `gh cs-proxy connect my-codespace --gateway`
 
 ## Desktop App (GUI)
 
-Prefer a one-click interface? The [`app/`](app/) folder contains a cross-platform desktop build (Electron) that runs the whole flow for you. Pick or create a Codespace, press ENABLE, and it starts the Codespace, opens the tunnel, and validates the connection. Press DISABLE to tear it down and optionally stop or delete the Codespace. It has a dot-matrix status display and selectable skins.
+The [`app/`](app/) folder contains a cross-platform Electron desktop app that wraps the entire tunnel flow in a compact, frameless interface. It runs on Linux and macOS.
+
+**What it does.** Pick or create a Codespace, press play, and the app handles authentication, codespace startup, sshuttle routing, and tunnel validation in one shot. Press stop to tear everything down. The codespace can be left running, stopped, or deleted depending on your settings.
+
+**What it looks like.** Frameless window with frosted glass transparency, rounded corners, and a canvas-rendered dot-matrix display showing live tunnel status. Five built-in color themes (Green Phosphor, Amber CRT, Ice Blue, Synthwave, LCD). Window opacity is adjustable from the settings panel.
+
+**Settings** open in a separate tabbed window (Connection, Routing, Appearance, System) so you have room to configure without squinting at the compact main interface.
+
+### Quick start
 
 ```bash
 cd app
@@ -24,7 +32,17 @@ npm install
 npm start
 ```
 
-See [app/README.md](app/README.md) for setup, routing modes, and the one-time firewall authorization. Linux and macOS for now.
+### Build a standalone binary
+
+```bash
+npm run dist           # Linux AppImage + deb
+npm run dist:mac       # macOS dmg
+npm run dist:all       # all platforms
+```
+
+The AppImage is portable, no install needed, just `chmod +x` and run.
+
+See [app/README.md](app/README.md) for routing modes, the one-time firewall authorization, and security notes.
 
 ----
  
