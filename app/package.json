@@ -1,0 +1,54 @@
+{
+  "name": "gh-cs-proxy-desktop",
+  "productName": "CS-Proxy",
+  "version": "0.1.0",
+  "description": "OS-agnostic desktop control panel for routing traffic through a GitHub Codespace via sshuttle and SSH reverse tunnels.",
+  "license": "MIT",
+  "author": "Steven B.",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging",
+    "check": "node --check src/main/main.js && node --check src/main/preload.js",
+    "dist": "electron-builder --linux",
+    "dist:all": "electron-builder --linux --mac --win",
+    "dist:appimage": "electron-builder --linux AppImage",
+    "dist:deb": "electron-builder --linux deb",
+    "dist:mac": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.appatalks.cs-proxy",
+    "productName": "CS-Proxy",
+    "files": [
+      "src/**/*"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network",
+      "icon": "build/icons"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "appImage": {
+      "artifactName": "${productName}-${version}-${arch}.AppImage"
+    },
+    "deb": {
+      "depends": [
+        "sshuttle",
+        "openssh-client"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^42.4.0",
+    "electron-builder": "^26.15.2"
+  }
+}

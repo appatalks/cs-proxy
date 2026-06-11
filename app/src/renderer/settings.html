@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'self'; script-src 'self'; font-src 'self';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS-Proxy Settings</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/themes.css" />
+</head>
+<body data-theme="green">
+  <div class="settings-page">
+    <div class="settings-page__head">
+      <h2>Settings</h2>
+      <button id="btnCloseSettings" class="btn-close" type="button" title="Close">&times;</button>
+    </div>
+
+    <nav class="tabs">
+      <button class="tab is-active" data-tab="connection">Connection</button>
+      <button class="tab" data-tab="routing">Routing</button>
+      <button class="tab" data-tab="appearance">Appearance</button>
+      <button class="tab" data-tab="system">System</button>
+    </nav>
+
+    <div class="settings-page__body">
+
+      <!-- Connection tab -->
+      <div class="tab-panel is-active" id="tab-connection">
+        <div class="field">
+          <label>GitHub</label>
+          <div class="auth" id="authStatus">checking…</div>
+        </div>
+
+        <fieldset class="group">
+          <legend>Codespace</legend>
+          <label class="radio"><input type="radio" name="source" value="existing" id="srcExisting" /> Use existing</label>
+          <div class="row" id="rowExisting">
+            <select id="selCodespace"></select>
+            <button id="btnRefreshCs" class="btn btn--mini" type="button">↻</button>
+          </div>
+          <label class="radio"><input type="radio" name="source" value="create" id="srcCreate" /> Create new</label>
+          <div class="row col" id="rowCreate">
+            <div class="row">
+              <select id="selRepo"></select>
+              <button id="btnRefreshRepos" class="btn btn--mini" type="button">↻</button>
+            </div>
+            <input id="inpBranch" type="text" placeholder="branch (optional)" />
+            <select id="selMachine"><option value="">default machine</option></select>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>On Disable</legend>
+          <select id="selTeardown">
+            <option value="leave">Leave codespace running</option>
+            <option value="stop">Stop codespace (restart later)</option>
+            <option value="delete">Delete codespace</option>
+          </select>
+          <p class="note" id="teardownNote"></p>
+        </fieldset>
+      </div>
+
+      <!-- Routing tab -->
+      <div class="tab-panel" id="tab-routing">
+        <fieldset class="group">
+          <legend>Routing</legend>
+          <select id="selMode">
+            <option value="all">All traffic (0.0.0.0/0)</option>
+            <option value="only-443">HTTPS only (:443)</option>
+            <option value="domains">Specific domains</option>
+          </select>
+          <input id="inpDomains" type="text" placeholder="github.com api.github.com" />
+          <label class="check"><input type="checkbox" id="chkDns" /> Tunnel DNS</label>
+          <label class="check"><input type="checkbox" id="chkGateway" /> Reverse gateway (local &rarr; codespace)</label>
+          <div class="row" id="rowPorts">
+            <input id="inpLocalPort" type="number" min="1" max="65535" placeholder="local 8000" />
+            <input id="inpRemotePort" type="number" min="1" max="65535" placeholder="remote 9000" />
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Appearance tab -->
+      <div class="tab-panel" id="tab-appearance">
+        <fieldset class="group">
+          <legend>Theme</legend>
+          <select id="selTheme">
+            <option value="amber">Amber CRT</option>
+            <option value="green">Green Phosphor</option>
+            <option value="ice">Ice Blue</option>
+            <option value="synth">Synthwave</option>
+            <option value="lcd">LCD</option>
+          </select>
+        </fieldset>
+        <fieldset class="group">
+          <legend>Window</legend>
+          <label class="slider-label">Opacity <span id="opacityVal">85%</span></label>
+          <input type="range" id="rngOpacity" min="0.3" max="1" step="0.05" value="0.85" class="slider" />
+        </fieldset>
+      </div>
+
+      <!-- System tab -->
+      <div class="tab-panel" id="tab-system">
+        <fieldset class="group">
+          <legend>Dependencies</legend>
+          <label class="check"><input type="checkbox" id="chkAutoInstall" /> Auto-install missing tools</label>
+          <ul class="deps" id="depList"></ul>
+        </fieldset>
+        <fieldset class="group">
+          <legend>Firewall</legend>
+          <div class="priv" id="privRow">
+            <span id="privStatus">Firewall authorization: unknown</span>
+            <button id="btnPrivSetup" class="btn btn--mini" type="button">Set up</button>
+          </div>
+        </fieldset>
+      </div>
+
+    </div>
+
+    <div class="settings-page__foot">
+      <button id="btnSaveSettings" class="btn" type="button">Save</button>
+    </div>
+  </div>
+
+  <script src="js/settings.js"></script>
+</body>
+</html>

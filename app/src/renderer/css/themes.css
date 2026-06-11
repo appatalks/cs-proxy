@@ -1,0 +1,133 @@
+/* Each theme is a set of CSS variables. The dot-matrix reads --dot-on / --dot-off
+   at runtime; everything else styles the device chrome. */
+
+:root,
+body[data-theme="amber"] {
+  --bg: transparent;
+  --device: #1a1d22;
+  --device-glass: rgba(26, 29, 34, 0.82);
+  --device-hi: rgba(35, 39, 46, 0.85);
+  --device-lo: rgba(20, 22, 25, 0.85);
+  --device-edge: #2c3038;
+  --display-bg: #0a0700;
+  --display-frame: #000000;
+  --dot-on: #ffb000;
+  --dot-off: rgba(255, 176, 0, 0.10);
+  --accent: #ffb000;
+  --accent-lo: #b87a00;
+  --accent-contrast: #1a1200;
+  --accent-glow: rgba(255, 176, 0, 0.55);
+  --btn: #20242b;
+  --btn-hi: #2a2f37;
+  --btn-lo: #181b21;
+  --btn-edge: #353a44;
+  --text: #e8e6e0;
+  --muted: #8b94a3;
+  --led-off: #2a2f37;
+  --led-on: #57e389;
+  --led-bad: #ff5a5a;
+}
+
+body[data-theme="green"] {
+  --bg: transparent;
+  --device: #141a16;
+  --device-glass: rgba(20, 26, 22, 0.82);
+  --device-hi: rgba(27, 35, 29, 0.85);
+  --device-lo: rgba(14, 19, 16, 0.85);
+  --device-edge: #233029;
+  --display-bg: #001403;
+  --display-frame: #000000;
+  --dot-on: #38ff7a;
+  --dot-off: rgba(56, 255, 122, 0.10);
+  --accent: #38ff7a;
+  --accent-lo: #1f9e4d;
+  --accent-contrast: #04150a;
+  --accent-glow: rgba(56, 255, 122, 0.5);
+  --btn: #18201a;
+  --btn-hi: #1f2a21;
+  --btn-lo: #111813;
+  --btn-edge: #294f37;
+  --text: #d7f5e1;
+  --muted: #6f9a80;
+  --led-off: #1f2a21;
+  --led-on: #57ff8b;
+  --led-bad: #ff6b6b;
+}
+
+body[data-theme="ice"] {
+  --bg: transparent;
+  --device: #121821;
+  --device-glass: rgba(18, 24, 33, 0.82);
+  --device-hi: rgba(26, 35, 48, 0.85);
+  --device-lo: rgba(13, 18, 26, 0.85);
+  --device-edge: #25303f;
+  --display-bg: #00060f;
+  --display-frame: #000000;
+  --dot-on: #46c3ff;
+  --dot-off: rgba(70, 195, 255, 0.10);
+  --accent: #46c3ff;
+  --accent-lo: #2a82b8;
+  --accent-contrast: #021018;
+  --accent-glow: rgba(70, 195, 255, 0.5);
+  --btn: #141c27;
+  --btn-hi: #1c2734;
+  --btn-lo: #0f151d;
+  --btn-edge: #2c3e52;
+  --text: #e3edf6;
+  --muted: #7e93a8;
+  --led-off: #1c2734;
+  --led-on: #5dff9b;
+  --led-bad: #ff5d6e;
+}
+
+body[data-theme="synth"] {
+  --bg: transparent;
+  --device: #1a1030;
+  --device-glass: rgba(26, 16, 48, 0.82);
+  --device-hi: rgba(36, 22, 64, 0.85);
+  --device-lo: rgba(18, 10, 34, 0.85);
+  --device-edge: #34204f;
+  --display-bg: #11001a;
+  --display-frame: #000000;
+  --dot-on: #ff3d9a;
+  --dot-off: rgba(255, 61, 154, 0.12);
+  --accent: #ff3d9a;
+  --accent-lo: #b3236b;
+  --accent-contrast: #1a0010;
+  --accent-glow: rgba(255, 61, 154, 0.55);
+  --btn: #1d1238;
+  --btn-hi: #281a48;
+  --btn-lo: #150c2a;
+  --btn-edge: #3d2860;
+  --text: #f3e9ff;
+  --muted: #9a7fc0;
+  --led-off: #281a48;
+  --led-on: #2bd1ff;
+  --led-bad: #ff5470;
+}
+
+body[data-theme="lcd"] {
+  --bg: transparent;
+  --device: #3a4032;
+  --device-glass: rgba(58, 64, 50, 0.82);
+  --device-hi: rgba(71, 78, 61, 0.85);
+  --device-lo: rgba(46, 51, 40, 0.85);
+  --device-edge: #545c46;
+  --display-bg: #aebf86;
+  --display-frame: #6b7450;
+  --dot-on: #1c2410;
+  --dot-off: rgba(28, 36, 16, 0.12);
+  --accent: #5a6b32;
+  --accent-lo: #44521f;
+  --accent-contrast: #e8f0c8;
+  --accent-glow: rgba(90, 107, 50, 0.4);
+  --btn: #444b39;
+  --btn-hi: #515844;
+  --btn-lo: #383e2d;
+  --btn-edge: #5f6850;
+  --text: #ebedd9;
+  --muted: #aab095;
+  --led-off: #4a5140;
+  --led-on: #6db33f;
+  --led-bad: #c4452f;
+}

@@ -13,6 +13,49 @@ Image: `gh cs-proxy connect my-codespace --gateway`
 <p>
  
 ----
+
+## Desktop App (GUI)
+
+The [`app/`](app/) folder contains a cross-platform Electron desktop app that wraps the entire tunnel flow in a compact, frameless interface. It runs on Linux and macOS.
+
+**What it does.** Pick or create a Codespace, press play, and the app handles authentication, codespace startup, sshuttle routing, and tunnel validation in one shot. Press stop to tear everything down. The codespace can be left running, stopped, or deleted depending on your settings.
+
+**What it looks like.** Frameless window with frosted glass transparency, rounded corners, and a canvas-rendered dot-matrix display showing live tunnel status. Five built-in color themes (Green Phosphor, Amber CRT, Ice Blue, Synthwave, LCD). Window opacity is adjustable from the settings panel.
+
+**Settings** open in a separate tabbed window (Connection, Routing, Appearance, System) so you have room to configure without squinting at the compact main interface.
+
+### Quick start
+
+```bash
+cd app
+npm install
+npm start
+```
+
+### Build a standalone binary
+
+```bash
+npm run dist           # Linux AppImage + deb
+npm run dist:mac       # macOS dmg
+npm run dist:all       # all platforms
+```
+
+### Using the AppImage (Linux)
+
+Grab the AppImage from the `app/dist/` directory after building, or from the releases page.
+
+```bash
+chmod +x CS-Proxy-*.AppImage
+./CS-Proxy-*.AppImage
+```
+
+No installation required. The binary is self-contained and runs from anywhere. Your settings are stored in `~/.config/CS-Proxy/`.
+
+`gh`, `sshuttle`, and `ssh` still need to be available on the host. The app will check for them on startup and can auto-install missing tools if enabled in Settings > System.
+
+See [app/README.md](app/README.md) for routing modes, the one-time firewall authorization, and security notes.
+
+----
  
 ## Installation
 

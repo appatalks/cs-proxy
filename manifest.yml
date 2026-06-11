@@ -1,6 +1,0 @@
-name: gh-cs-proxy
-version: 0.1.0
-description: Route traffic through GitHub Codespaces via sshuttle and SSH reverse tunnels
-usage: gh cs-proxy connect <codespace-name> [--all] [--dns] [--only-443] [--domains "domain1 domain2"] [--gateway]
-bin: bin/gh-cs-proxy
-shell: bash
