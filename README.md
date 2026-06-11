@@ -22,6 +22,8 @@ The [`app/`](app/) folder contains a cross-platform Electron desktop app that wr
 
 **What it looks like.** Frameless window with frosted glass transparency, rounded corners, and a canvas-rendered dot-matrix display showing live tunnel status. Five built-in color themes (Green Phosphor, Amber CRT, Ice Blue, Synthwave, LCD). Window opacity is adjustable from the settings panel.
 
+<img src="img/cs-proxy-desktop.png" alt="CS-Proxy desktop app" width="500">
+
 **Settings** open in a separate tabbed window (Connection, Routing, Appearance, System) so you have room to configure without squinting at the compact main interface.
 
 ### Quick start
