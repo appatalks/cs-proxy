@@ -6,7 +6,7 @@ const path = require('path');
 const { app } = require('electron');
 const { run } = require('./proc');
 
-const SUDOERS_PATH = '/etc/sudoers.d/gh-cs-proxy';
+const SUDOERS_PATH = '/etc/sudoers.d/cs-proxy';
 // Bump when the rule format changes so existing installs get re-provisioned.
 const RULE_VERSION = 2;
 
@@ -41,7 +41,7 @@ async function resolveSshuttlePath() {
  */
 function buildSudoers(user, sshuttlePath) {
   return [
-    '# Installed by gh-cs-proxy desktop. Allows passwordless sshuttle firewall setup.',
+    '# Installed by cs-proxy desktop. Allows passwordless sshuttle firewall setup.',
     `# rule-version: ${RULE_VERSION}`,
     `Cmnd_Alias GHCSPROXY_SSHUTTLE = ${sshuttlePath} *`,
     `${user} ALL=(root) NOPASSWD: GHCSPROXY_SSHUTTLE`,
@@ -82,7 +82,7 @@ async function install(onLine = () => {}) {
   }
   const content = buildSudoers(user, sshuttlePath);
 
-  const tmp = path.join(os.tmpdir(), 'gh-cs-proxy.sudoers');
+  const tmp = path.join(os.tmpdir(), 'cs-proxy.sudoers');
   try {
     fs.writeFileSync(tmp, content, { mode: 0o600 });
   } catch (err) {

@@ -1,5 +1,5 @@
 {
-  "name": "gh-cs-proxy-desktop",
+  "name": "cs-proxy-desktop",
   "productName": "CS-Proxy",
   "version": "0.1.0",
   "description": "OS-agnostic desktop control panel for routing traffic through a GitHub Codespace via sshuttle and SSH reverse tunnels.",

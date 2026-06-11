@@ -1,4 +1,4 @@
-# gh-cs-proxy
+# cs-proxy
 ### GitHub Cli Extension: Proxy-Gateway & VPN for Codespaces <p><p>
 
 > [!NOTE]
@@ -7,7 +7,7 @@
 Send chosen internet traffic through your GitHub Codespace with [`sshuttle`](https://github.com/sshuttle/sshuttle)([**download**](https://sshuttle.readthedocs.io/en/stable/installation.html#)), and optionally open a reverse SSH tunnel so the Codespace can reach services running on targeted local/private networks.
 
 
-<img title="Gateway" alt="--gateway" src="img/gh-cs-proxy-gateway.png"> <p> 
+<img title="Gateway" alt="--gateway" src="img/cs-proxy-gateway.png"> <p> 
 Image: `gh cs-proxy connect my-codespace --gateway`
 
 <p>
@@ -60,8 +60,8 @@ See [app/README.md](app/README.md) for routing modes, the one-time firewall auth
 ## Installation
 
 ```bash
-gh extension install appatalks/gh-cs-proxy
-chmod +x ~/.local/share/gh/extensions/gh-cs-proxy/gh-cs-proxy
+gh extension install appatalks/cs-proxy
+chmod +x ~/.local/share/gh/extensions/cs-proxy/cs-proxy
 ```
 
 ## Usage

@@ -108,7 +108,7 @@ async function ensureSshConfig(name) {
 
 /** Wake a stopped codespace (gh has no `start`, so we SSH a no-op into it). */
 async function wake(name, onLine) {
-  return runOk('gh', ['codespace', 'ssh', '-c', name, '--', 'echo', 'gh-cs-proxy-ready'],
+  return runOk('gh', ['codespace', 'ssh', '-c', name, '--', 'echo', 'cs-proxy-ready'],
     { timeout: 180000, onLine });
 }
 
