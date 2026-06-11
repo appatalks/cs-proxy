@@ -1,37 +1,28 @@
 # cs-proxy
-### GitHub Cli Extension: Proxy-Gateway & VPN for Codespaces <p><p>
+
+Route internet traffic through a GitHub Codespace using [`sshuttle`](https://github.com/sshuttle/sshuttle), with an optional reverse SSH tunnel so the Codespace can reach local or private networks.
+
+Available as a **CLI extension** for `gh` and as a standalone **desktop app**.
 
 > [!NOTE]
-> This project aims to be a replacement for the no longer maintained as described GH CLI [Extension](https://docs.github.com/en/codespaces/developing-in-a-codespace/connecting-to-a-private-network#using-the-github-cli-extension-to-access-remote-resources) for _access to remote resources_ in GitHub documentation.
+> Replaces the no-longer-maintained GH CLI [extension for remote resource access](https://docs.github.com/en/codespaces/developing-in-a-codespace/connecting-to-a-private-network#using-the-github-cli-extension-to-access-remote-resources).
 
-Send chosen internet traffic through your GitHub Codespace with [`sshuttle`](https://github.com/sshuttle/sshuttle)([**download**](https://sshuttle.readthedocs.io/en/stable/installation.html#)), and optionally open a reverse SSH tunnel so the Codespace can reach services running on targeted local/private networks.
+---
 
+## Desktop app
 
-<img title="Gateway" alt="--gateway" src="img/cs-proxy-gateway.png"> <p> 
-Image: `gh cs-proxy connect my-codespace --gateway`
+<img src="img/cs-proxy-desktop.png" alt="CS-Proxy desktop app" width="420">
 
-<p>
- 
-----
+Cross-platform Electron app (Linux, macOS) with a one-click connect/disconnect flow. Pick or create a Codespace, press play, and the app handles everything: authentication, codespace startup, sshuttle routing, and tunnel validation.
 
-## Desktop App (GUI)
+- Frosted glass UI with five color themes and adjustable opacity
+- Canvas-rendered dot-matrix status display
+- Tabbed settings window (Connection, Routing, Appearance, System)
 
-The [`app/`](app/) folder contains a cross-platform Electron desktop app that wraps the entire tunnel flow in a compact, frameless interface. It runs on Linux and macOS.
-
-**What it does.** Pick or create a Codespace, press play, and the app handles authentication, codespace startup, sshuttle routing, and tunnel validation in one shot. Press stop to tear everything down. The codespace can be left running, stopped, or deleted depending on your settings.
-
-**What it looks like.** Frameless window with frosted glass transparency, rounded corners, and a canvas-rendered dot-matrix display showing live tunnel status. Five built-in color themes (Green Phosphor, Amber CRT, Ice Blue, Synthwave, LCD). Window opacity is adjustable from the settings panel.
-
-<img src="img/cs-proxy-desktop.png" alt="CS-Proxy desktop app" width="500">
-
-**Settings** open in a separate tabbed window (Connection, Routing, Appearance, System) so you have room to configure without squinting at the compact main interface.
-
-### Quick start
+### Run from source
 
 ```bash
-cd app
-npm install
-npm start
+cd app && npm install && npm start
 ```
 
 ### Build a standalone binary
@@ -39,76 +30,69 @@ npm start
 ```bash
 npm run dist           # Linux AppImage + deb
 npm run dist:mac       # macOS dmg
-npm run dist:all       # all platforms
 ```
 
-### Using the AppImage (Linux)
-
-Grab the AppImage from the `app/dist/` directory after building, or from the releases page.
+### AppImage (Linux)
 
 ```bash
 chmod +x CS-Proxy-*.AppImage
 ./CS-Proxy-*.AppImage
 ```
 
-No installation required. The binary is self-contained and runs from anywhere. Your settings are stored in `~/.config/CS-Proxy/`.
+Self-contained, no install needed. Settings are stored in `~/.config/CS-Proxy/`. The host still needs `gh`, `sshuttle`, and `ssh` (the app can auto-install missing tools from Settings > System).
 
-`gh`, `sshuttle`, and `ssh` still need to be available on the host. The app will check for them on startup and can auto-install missing tools if enabled in Settings > System.
+See [app/README.md](app/README.md) for routing details, firewall authorization, and security notes.
 
-See [app/README.md](app/README.md) for routing modes, the one-time firewall authorization, and security notes.
+---
 
-----
- 
-## Installation
+## CLI extension
+
+### Install
 
 ```bash
 gh extension install appatalks/cs-proxy
 chmod +x ~/.local/share/gh/extensions/cs-proxy/cs-proxy
 ```
 
-## Usage
+### Usage
 
 ```bash
 gh cs-proxy connect <codespace-name> [flags]
 ```
 
-## Flags
+| Flag | Description |
+|------|-------------|
+| `--all` | Route all traffic (`0.0.0.0/0`) |
+| `--only-443` | Route HTTPS/TLS only (`0.0.0.0/0:443`) |
+| `--dns` | Tunnel DNS queries |
+| `--domains "..."` | Route specific domains (space-separated) |
+| `--gateway` | Reverse SSH tunnel to your localhost (default local:8000, remote:9000) |
 
-```txt
-`--all`             Route all traffic (0.0.0.0/0) through the Codespace
-`--only-443`        Route only HTTPS/TLS traffic (0.0.0.0/0:443)
-`--dns`             Include DNS queries in the tunnel
-`--domains "..."`   Route HTTPS traffic for specific domains (space-separated list)
-`--gateway`         Set up a reverse SSH tunnel so the Codespace can reach your localhost (default local:8000 → remote:9000)
-`-h`,`--help`       Show usage
-```
+### Examples
+
+Route TLS + DNS:
 ```bash
-gh cs-proxy help
-Usage: gh cs-proxy connect <codespace-name> [--all] [--dns] [--only-443] [--domains "domain1 domain2"] [--gateway]
+gh cs-proxy connect my-codespace --only-443 --dns
 ```
 
-## Examples
+Route specific domains with a local gateway:
+```bash
+gh cs-proxy connect my-codespace --domains "github.com api.github.com" --gateway
+```
 
-1. Route only TLS + DNS:
-  ```bash
-  gh cs-proxy connect my-codespace --only-443 --dns
-  ```
+Route all traffic:
+```bash
+gh cs-proxy connect my-codespace --all
+```
 
-2. Route GitHub domains + set up local gateway:
-  ```bash
-  gh cs-proxy connect my-codespace --domains "github.com api.github.com" --gateway
-  ```
+Custom port mapping:
+```bash
+export LOCAL_PORT=3000 REMOTE_PORT=9001
+gh cs-proxy connect my-codespace --gateway
+```
 
-3. Route all traffic:
-  ```bash
-  gh cs-proxy connect my-codespace --all
-  ```
+<img src="img/cs-proxy-gateway.png" alt="Gateway mode" width="600">
 
-4. Custom local port mapping (optionally, use env vars before running):
-  ```bash
-  export LOCAL_PORT=3000 REMOTE_PORT=9001
-  gh cs-proxy connect my-codespace --gateway
-  ```
-<br>
+---
 
- ###### `Appa's Thoughts: Epic.`
+###### `Appa's Thoughts: Epic.`
