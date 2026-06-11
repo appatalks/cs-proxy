@@ -40,7 +40,18 @@ npm run dist:mac       # macOS dmg
 npm run dist:all       # all platforms
 ```
 
-The AppImage is portable, no install needed, just `chmod +x` and run.
+### Using the AppImage (Linux)
+
+Grab the AppImage from the `app/dist/` directory after building, or from the releases page.
+
+```bash
+chmod +x CS-Proxy-*.AppImage
+./CS-Proxy-*.AppImage
+```
+
+No installation required. The binary is self-contained and runs from anywhere. Your settings are stored in `~/.config/CS-Proxy/`.
+
+`gh`, `sshuttle`, and `ssh` still need to be available on the host. The app will check for them on startup and can auto-install missing tools if enabled in Settings > System.
 
 See [app/README.md](app/README.md) for routing modes, the one-time firewall authorization, and security notes.
 
